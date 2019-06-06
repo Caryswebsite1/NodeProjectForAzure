@@ -5,6 +5,8 @@ var logger = require("morgan");
 var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 
+const http = require('http');
+
 let option = { useNewUrlParser: true }; // new
 const MongoClient = require("mongodb").MongoClient;
 //const mongoUrl = "mongodb+srv://BCstudent:BCstudentPW@kurtcluster-du4fk.mongodb.net/test?retryWrites=true";
@@ -35,7 +37,8 @@ app.use(express.static(path.join(__dirname, "public")));
 // app.use('/users', users);
 
 // new code from example
-const port = 3000;
+//const port = 3000;
+const port = process.env.PORT || 3000
 MongoClient.connect(mongoUrl, option, (err, database) => {
     if (err) return console.log(err);
     let db = database.db("Prog219DB");
